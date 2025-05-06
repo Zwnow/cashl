@@ -27,4 +27,9 @@ defmodule CashlWeb.UserRegistrationController do
         render(conn, :new, changeset: changeset)
     end
   end
+
+  def create(conn, _) do
+    conn
+    |> send_resp(400, "Missing user param")
+  end
 end

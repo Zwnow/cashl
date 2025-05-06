@@ -8,7 +8,7 @@ defmodule CashlWeb.Router do
     plug :fetch_session
     plug :fetch_live_flash
     plug :put_root_layout, html: {CashlWeb.Layouts, :root}
-    plug :protect_from_forgery
+    #plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
   end
@@ -25,9 +25,9 @@ defmodule CashlWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", CashlWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", CashlWeb do
+    pipe_through :api
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:cashl, :dev_routes) do

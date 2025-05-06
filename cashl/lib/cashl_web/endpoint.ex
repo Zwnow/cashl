@@ -25,6 +25,11 @@ defmodule CashlWeb.Endpoint do
     gzip: false,
     only: CashlWeb.static_paths()
 
+  plug CORSPlug,
+    origins: ["http://127.0.0.1:4000", "http://127.0.0.1:5173"],
+    methods: ["GET", "POST", "OPTIONS"],
+    headers: ["Content-Type", "Authorization", "X-Requested-With", "accept", "origin", "X-Custom-Header"]
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do

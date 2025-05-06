@@ -1,4 +1,30 @@
 services:
+  phoenix:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app:z
+    ports:
+      - "4000:4000"
+    environment:
+      MIX_ENV: dev
+    depends_on:
+      - postgres
+
+  vue:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ../frontend:/app:z
+      - /app/node_modules
+    ports:
+      - "5173:5173"  # Adjust to your Vue dev server port
+    command: npm run dev
+    environment:
+      NODE_ENV: development
+
   postgres:
     image: postgres:latest
     container_name: postgres
