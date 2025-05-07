@@ -26,7 +26,7 @@ defmodule CashlWeb.Endpoint do
     only: CashlWeb.static_paths()
 
   plug CORSPlug,
-    origins: ["http://127.0.0.1:4000", "http://127.0.0.1:5173"],
+    origins: "*",
     methods: ["GET", "POST", "OPTIONS"],
     headers: ["Content-Type", "Authorization", "X-Requested-With", "accept", "origin", "X-Custom-Header"]
 

@@ -20,9 +20,7 @@ defmodule CashlWeb.UserRegistrationController do
           )
 
         conn
-        |> put_flash(:info, "User created successfully.")
-        |> UserAuth.log_in_user(user)
-
+        |> send_resp(201, Jason.encode!(%{status: "success"}))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :new, changeset: changeset)
     end
@@ -30,6 +28,6 @@ defmodule CashlWeb.UserRegistrationController do
 
   def create(conn, _) do
     conn
-    |> send_resp(400, "Missing user param")
+    |> send_resp(400, Jason.encode!(%{status: "error", message: "missing user parameter"}))
   end
 end
